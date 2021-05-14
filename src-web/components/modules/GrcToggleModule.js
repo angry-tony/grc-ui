@@ -57,6 +57,8 @@ class GrcToggleModule extends React.Component {
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
     }
+    let { sortValue } = this.state
+    sortValue = sortValue || tableData[grcTabToggleIndex].sortBy
     const extraToolbarControls = (
       <ToggleGroup className='grc-toggle-button'>
           <ToggleGroupItem
@@ -85,7 +87,8 @@ class GrcToggleModule extends React.Component {
             addSubRows={tableData[grcTabToggleIndex].addSubRows}
             keyFn={tableData[grcTabToggleIndex].keyFn}
             setSearch={searchValue}
-            sort={tableData[grcTabToggleIndex].sortBy}
+            sort={sortValue}
+            setSort={this.setSort}
             gridBreakPoint=''
             extraToolbarControls={extraToolbarControls}
             searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
@@ -100,6 +103,12 @@ class GrcToggleModule extends React.Component {
     replaceSessionPair(GRC_SEARCH_STATE_COOKIE, componentName, searchValue, true)
     this.setState({
       searchValue: searchValue
+    })
+  }
+
+  setSort = (value) => {
+    this.setState({
+      sortValue: value
     })
   }
 

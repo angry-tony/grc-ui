@@ -476,7 +476,7 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
   let statusAvailable = false
   // page /multicloud/policies/all
   return cy.then(() => {
-    cy.get('[aria-label="Sortable Table"]').within(() => {
+    cy.get('[aria-label="Simple Table"]').within(() => {
       cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, counter) => {
         // check the violation status
         cy.wrap(counter).find('path').then((elems) => {
@@ -508,7 +508,7 @@ export const isPolicyStatusAvailable = (uName, violationsCounter) => {
   //if (window.location.toString().endsWith('/multicloud/policies/all')) {
 return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
-    cy.get('[aria-label="Sortable Table"]').within(() => {
+    cy.get('[aria-label="Simple Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
@@ -1222,7 +1222,7 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
     }
   }
   cy.doTableSearch(clusterName)
-    .get('table[aria-label="Sortable Table"]').within(() => {
+    .get('table[aria-label="Simple Table"]').within(() => {
     cy.get('a').contains(clusterName).parents('td').siblings('td')
     .spread((namespace, violations, policies) => {
       // FIXME: skip namespace
