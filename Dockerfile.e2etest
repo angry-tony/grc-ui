@@ -33,6 +33,6 @@ RUN npm install \
     mocha-junit-reporter \
     mochawesome \
     js-yaml@4.1.0 \
-    @slack/web-api@5.15.0
+    @slack/web-api@6.2.3
 
 CMD ["./build/run-docker-tests.sh"]
